@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>无标题文档</title>
+<script src="jquery-1.8.3.min.js"></script>
+<script src="../cli-captcha.js"></script>
+<script>
+$(function(){
+	$('#captcha').cliCaptcha({
+		src: '../captcha.php',
+		titleObj: '#title',
+		refreshObj: '#refresh',
+		successFunc: function(){
+			alert('通过验证');
+		},
+		errorFunc: function(){
+			alert('验证失败')
+		}
+	});
+});
+</script>
+</head>
+
+<body>
+<img src="" id="captcha">
+<div id="title"></div>
+<button id="refresh">刷新</button>
+</body>
+</html>
