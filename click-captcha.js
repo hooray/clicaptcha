@@ -12,7 +12,7 @@
 
 (function($){
 	$.fn.extend({
-		'cliCaptcha': function(options){
+		'clickCaptcha': function(options){
 			var opts = $.extend({}, defaluts, options); //使用jQuery.extend 覆盖插件默认参数
 			this.attr('src', opts.src + '?' + new Date().getTime()).load(function(){
 				var thisObj = $(this);
@@ -52,32 +52,36 @@
 									opts.successFunc();
 								}else{
 									opts.errorFunc();
-									thisObj.cliCaptcha(opts);
+									thisObj.clickCaptcha(opts);
 								}
 							});
 						}
 					});
 				});
-				$(opts.refreshObj).off('click').on('click', function(){
-					thisObj.cliCaptcha(opts);
-				});
-				$(opts.revokeObj).off('click').on('click', function(){
-					xyArr.pop();
-					$(opts.titleObj+' span:eq('+xyArr.length+')').css({
-						fontWeight: '',
-						color: ''
+				if(opts.refreshObj != ''){
+					$(opts.refreshObj).off('click').on('click', function(){
+						thisObj.clickCaptcha(opts);
 					});
-				});
+				}
+				if(opts.revokeObj != ''){
+					$(opts.revokeObj).off('click').on('click', function(){
+						xyArr.pop();
+						$(opts.titleObj+' span:eq('+xyArr.length+')').css({
+							fontWeight: '',
+							color: ''
+						});
+					});
+				}
 			});
 			return this;
 		}
 	});
 	//默认参数
 	var defaluts = {
-		src: 'cli-captcha/captcha.php',
+		src: 'click-captcha/captcha.php',
 		titleObj: '#title',
-		refreshObj: '#refresh',
-		revokeObj: '#revoke',
+		refreshObj: '',
+		revokeObj: '',
 		successFunc: function(){},
 		errorFunc: function(){}
 	};
