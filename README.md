@@ -6,7 +6,7 @@
 
 ## 调用方式
 ```
-$('#captcha').cliCaptcha({
+$('#captcha').clickCaptcha({
 	src: '../captcha.php',
 	titleObj: '#title',
 	refreshObj: '#refresh',
