@@ -6,15 +6,18 @@
 		//验证
 		$textArr = $_SESSION['cli_captcha_text'];
 		$flag = true;
-		$xy = json_decode($_POST['xy']);
+		$xyArr = explode('-', $_POST['xy']);
 		$xpro = $_POST['w'] / $textArr['width'];//宽度比例
 		$ypro = $_POST['h'] / $textArr['height'];//高度比例
-		for($i = 0; $i < count($xy); $i++){
-			if($xy[$i]->x / $xpro < $textArr['text'][$i]['x'] || $xy[$i]->x / $xpro > $textArr['text'][$i]['x'] + $textArr['text'][$i]['width']){
+		foreach($xyArr as $k => $v){
+			$xy = explode(',', $v);
+			$x = $xy[0];
+			$y = $xy[1];
+			if($x / $xpro < $textArr['text'][$k]['x'] || $x / $xpro > $textArr['text'][$k]['x'] + $textArr['text'][$k]['width']){
 				$flag = false;
 				break;
 			}
-			if($xy[$i]->y / $ypro < $textArr['text'][$i]['y'] - $textArr['text'][$i]['height'] || $xy[$i]->y / $ypro > $textArr['text'][$i]['y']){
+			if($y / $ypro < $textArr['text'][$k]['y'] - $textArr['text'][$k]['height'] || $y / $ypro > $textArr['text'][$k]['y']){
 				$flag = false;
 				break;
 			}
@@ -50,7 +53,7 @@
 		}
 		unset($v);
 		$_SESSION['cli_captcha_text'] = $textArr;
-		setcookie('cli_captcha_text', json_encode($text));
+		setcookie('cli_captcha_text', implode(',', $text));
 		//创建图片的实例
 		$image = imagecreatefromstring(file_get_contents($imagePath));
 		foreach($textArr['text'] as $v){
