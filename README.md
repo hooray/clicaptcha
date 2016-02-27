@@ -9,10 +9,18 @@
 
 ## 调用方式
 ```
-$('#captcha').clickCaptcha({
-	src: '../captcha.php',
+<input type="hidden" id="captcha-info" name="captcha-info">
+```
+```
+$('#captcha-info').clickCaptcha({
+    src: '../captcha.php',
 	callback: function(){
 		//...
 	}
 });
+```
+```
+//后端进行二次验证
+require('../check.php');
+echo checkCaptcha($_POST['captcha-info']) ? '后端二次验证成功' : '后端二次验证失败';
 ```
