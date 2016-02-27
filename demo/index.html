@@ -3,15 +3,40 @@
 <head>
 <meta charset="utf-8">
 <title>click-captcha在线演示</title>
+<link rel="stylesheet" href="../css/captcha.css">
+<link rel="stylesheet" href="css/main.css">
+<script src="jquery-1.8.3.min.js"></script>
+<script src="../click-captcha.js"></script>
+<script>
+$(function(){
+	$('#sub').click(function(){
+		$('#click-captcha-submit-info').clickCaptcha({
+			src: '../captcha.php',
+			callback: function(){
+				$('#form').submit();
+			}
+		});
+	});
+});
+</script>
 </head>
 
 <body>
-<ol>
-	<li><a href="demo1.html" target="_blank">普通调用</a></li>
-	<li><a href="demo2.html" target="_blank">结合第三方弹出层插件调用</a></li>
-	<li><a href="demo3.html" target="_blank">强制拉伸图片尺寸</a></li>
-	<li><a href="demo4.html" target="_blank">带刷新按钮</a></li>
-	<li><a href="demo5.html" target="_blank">带撤销按钮</a></li>
-</ol>
+<div id="login">
+	<form action="action.php" method="post" id="form" name="form">
+		<div class="row">
+			<div class="text">用户名：</div>
+			<div class="input"><input type="text"></div>
+		</div>
+		<div class="row">
+			<div class="text">密码：</div>
+			<div class="input"><input type="password"></div>
+		</div>
+		<div class="row">
+			<button type="button" id="sub">提交</button>
+		</div>
+		<input type="hidden" id="click-captcha-submit-info" name="click-captcha-submit-info">
+	</form>
+</div>
 </body>
 </html>

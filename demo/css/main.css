@@ -1,0 +1,6 @@
+#login{width:500px;padding:50px;border:1px solid #ccc;margin:10px auto;}
+.row{height:30px;line-height:30px;padding:5px 0;}
+.row .text{width:100px;float:left;}
+.row .input{width:350px;float:left;}
+.row .input input{width:200px;height:26px;padding:0;}
+button{width:100px;height:30px;}

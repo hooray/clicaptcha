@@ -5,20 +5,14 @@
 [点击查看](http://captcha.oschina.mopaasapp.com/demo)
 
 ## 效果图
-![](http://ww3.sinaimg.cn/large/60c18c1cgw1f0nz7i4jduj20e609c77j.jpg)
+![](http://ww1.sinaimg.cn/large/60c18c1cgw1f1e0mrqp12j20bh09v40h.jpg)
 
 ## 调用方式
 ```
 $('#captcha').clickCaptcha({
 	src: '../captcha.php',
-	titleObj: '#title',
-	refreshObj: '#refresh',
-	revokeObj: '#revoke',
-	successFunc: function(){
-		alert('通过验证');
-	},
-	errorFunc: function(){
-		alert('验证失败')
+	callback: function(){
+		//...
 	}
 });
 ```

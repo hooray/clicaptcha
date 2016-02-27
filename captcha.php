@@ -3,29 +3,10 @@
 	error_reporting(E_ERROR | E_WARNING | E_PARSE);
 	
 	if($_POST['do'] == 'check'){
-		//验证
-		$textArr = $_SESSION['cli_captcha_text'];
-		$flag = true;
-		$xyArr = explode('-', $_POST['xy']);
-		$xpro = $_POST['w'] / $textArr['width'];//宽度比例
-		$ypro = $_POST['h'] / $textArr['height'];//高度比例
-		foreach($xyArr as $k => $v){
-			$xy = explode(',', $v);
-			$x = $xy[0];
-			$y = $xy[1];
-			if($x / $xpro < $textArr['text'][$k]['x'] || $x / $xpro > $textArr['text'][$k]['x'] + $textArr['text'][$k]['width']){
-				$flag = false;
-				break;
-			}
-			if($y / $ypro < $textArr['text'][$k]['y'] - $textArr['text'][$k]['height'] || $y / $ypro > $textArr['text'][$k]['y']){
-				$flag = false;
-				break;
-			}
-		}
-		echo $flag ? 1 : 0;
+		require('check.php');
+		echo checkCaptcha($_POST['info'], false) ? 1 : 0;
 	}else{
-		//生成
-		$imagePathArr = array('image/1.png', 'image/2.png', 'image/3.png');
+		$imagePathArr = array('image/1.jpg', 'image/2.jpg', 'image/3.jpg');
 		$imagePath = $imagePathArr[rand(0, 2)];
 		$fontPath = 'font/iYuanTi.ttf';
 		foreach(randChars() as $v){
@@ -52,8 +33,8 @@
 			$text[] = $v['text'];
 		}
 		unset($v);
-		$_SESSION['cli_captcha_text'] = $textArr;
-		setcookie('cli_captcha_text', implode(',', $text));
+		$_SESSION['click_captcha_text'] = $textArr;
+		setcookie('click_captcha_text', implode(',', $text));
 		//创建图片的实例
 		$image = imagecreatefromstring(file_get_contents($imagePath));
 		foreach($textArr['text'] as $v){
@@ -181,7 +162,18 @@
 	}
 	//获取图片某个定点上的主要色
 	function getImageColor($img, $x, $y){
-		$im = imagecreatefrompng($img);
+		list($imageWidth, $imageHeight, $imageType) = getimagesize($img);
+		switch($imageType){
+			case 1://GIF
+				$im = imagecreatefromgif($img);
+				break;
+			case 2://JPG
+				$im = imagecreatefromjpeg($img);
+				break;
+			case 3://PNG
+				$im = imagecreatefrompng($img);
+				break;
+		}
 		$rgb = imagecolorat($im, $x, $y);
 		$r = ($rgb >> 16) & 0xFF;
 		$g = ($rgb >> 8) & 0xFF;
