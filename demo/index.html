@@ -6,12 +6,12 @@
 <link rel="stylesheet" href="../css/captcha.css">
 <link rel="stylesheet" href="css/main.css">
 <script src="jquery-1.8.3.min.js"></script>
-<script src="../click-captcha.js"></script>
+<script src="../clicaptcha.js"></script>
 <script>
 $(function(){
 	$('#sub').click(function(){
-		$('#click-captcha-submit-info').clickCaptcha({
-			src: '../captcha.php',
+		$('#clicaptcha-submit-info').clicaptcha({
+			src: '../clicaptcha.php',
 			callback: function(){
 				$('#form').submit();
 			}
@@ -35,7 +35,7 @@ $(function(){
 		<div class="row">
 			<button type="button" id="sub">提交</button>
 		</div>
-		<input type="hidden" id="click-captcha-submit-info" name="click-captcha-submit-info">
+		<input type="hidden" id="clicaptcha-submit-info" name="clicaptcha-submit-info">
 	</form>
 </div>
 </body>

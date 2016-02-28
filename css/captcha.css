@@ -1,4 +1,4 @@
-#click-captcha-box{
+#clicaptcha-box{
 	display: none;
 	width: 350px;
 	height: 290px;
@@ -14,34 +14,34 @@
 	border-radius: 10px;
 	box-shadow: 0 0 0 1px hsla(0,0%,100%,.3) inset, 0 .5em 1em rgba(0, 0, 0, 0.6);
 }
-#click-captcha-box .click-captcha-img{
+#clicaptcha-box .clicaptcha-img{
 	width: 350px;
 	height: 200px;
 	border: none;
 }
-#click-captcha-box .click-captcha-title{
+#clicaptcha-box .clicaptcha-title{
 	font-family: 'Microsoft YaHei';
 	height: 40px;
 	line-height: 40px;
 	font-size: 14px;
 	text-align: center;
 }
-#click-captcha-box .click-captcha-title span{
+#clicaptcha-box .clicaptcha-title span{
 	font-size: 16px;
 	font-weight: bold;
 	color: #c00;
 }
-#click-captcha-box .click-captcha-title span.click-captcha-clicked{
+#clicaptcha-box .clicaptcha-title span.clicaptcha-clicked{
 	color: #069;
 }
-#click-captcha-box .click-captcha-refresh-btn{
+#clicaptcha-box .clicaptcha-refresh-btn{
 	display: block;
 	margin: 10px auto 0;
 	width: 32px;
 	height: 32px;
 	background: url(../image/refresh.png) no-repeat;
 }
-#click-captcha-mask{
+#clicaptcha-mask{
 	display: none;
 	position: fixed;
 	z-index: 9999;

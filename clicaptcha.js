@@ -6,40 +6,40 @@
 
 (function($){
 	$.fn.extend({
-		'clickCaptcha': function(options){
+		'clicaptcha': function(options){
 			var opts = $.extend({}, defaluts, options); //使用jQuery.extend覆盖插件默认参数
 			var $this = this;
-			if(!$('#click-captcha-box').length){
-				$('body').append('<div id="click-captcha-box">'+
-					'<img class="click-captcha-img" src="" alt="易网验证码加载失败，请点击刷新按钮">'+
-					'<div class="click-captcha-title"></div>'+
-					'<a href="javascript:;" class="click-captcha-refresh-btn" title="刷新"></a>'+
+			if(!$('#clicaptcha-box').length){
+				$('body').append('<div id="clicaptcha-box">'+
+					'<img class="clicaptcha-img" src="" alt="易网验证码加载失败，请点击刷新按钮">'+
+					'<div class="clicaptcha-title"></div>'+
+					'<a href="javascript:;" class="clicaptcha-refresh-btn" title="刷新"></a>'+
 				'</div>');
-				$('body').append('<div id="click-captcha-mask"></div>');
-				$('#click-captcha-mask').click(function(){
-					$('#click-captcha-box').hide();
+				$('body').append('<div id="clicaptcha-mask"></div>');
+				$('#clicaptcha-mask').click(function(){
+					$('#clicaptcha-box').hide();
 					$(this).hide();
 				});
-				$('#click-captcha-box .click-captcha-refresh-btn').click(function(){
-					$this.clickCaptcha(opts);
+				$('#clicaptcha-box .clicaptcha-refresh-btn').click(function(){
+					$this.clicaptcha(opts);
 				});
 			}
-			$('#click-captcha-box, #click-captcha-mask').show();
-			$('#click-captcha-box .click-captcha-img').attr('src', opts.src + '?' + new Date().getTime()).load(function(){
+			$('#clicaptcha-box, #clicaptcha-mask').show();
+			$('#clicaptcha-box .clicaptcha-img').attr('src', opts.src + '?' + new Date().getTime()).load(function(){
 				var thisObj = $(this);
-				var text = Cookies.get('click_captcha_text').split(',');
+				var text = Cookies.get('clicaptcha_text').split(',');
 				var title = '请依次点击';
 				var t = [];
 				for(var i = 0; i < text.length; i++){
 					t.push('“<span>'+text[i]+'</span>”');
 				}
 				title += t.join('、');
-				$('#click-captcha-box .click-captcha-title').html(title);
+				$('#clicaptcha-box .clicaptcha-title').html(title);
 				var xyArr = [];
 				thisObj.off('mousedown').on('mousedown', function(e){
 					e.preventDefault();
 					thisObj.off('mouseup').on('mouseup', function(e){
-						$('#click-captcha-box .click-captcha-title span:eq('+xyArr.length+')').addClass('click-captcha-clicked');
+						$('#clicaptcha-box .clicaptcha-title span:eq('+xyArr.length+')').addClass('clicaptcha-clicked');
 						xyArr.push((e.clientX - $(this).offset().left) + ',' + (e.clientY - $(this).offset().top));
 						if(xyArr.length == text.length){
 							var captchainfo = [xyArr.join('-'), thisObj.width(), thisObj.height()].join(';');
@@ -53,13 +53,16 @@
 							}).done(function(cb){
 								if(cb == 1){
 									$this.val(captchainfo);
-									$('#click-captcha-box, #click-captcha-mask').hide();
-									opts.callback();
-								}else{
-									$('#click-captcha-box .click-captcha-title').html('未点中正确区域，请重试！');
+									$('#clicaptcha-box .clicaptcha-title').html(opts.success_tip);
 									setTimeout(function(){
-										$this.clickCaptcha(opts);
-									}, 2000);
+										$('#clicaptcha-box, #clicaptcha-mask').hide();
+										opts.callback();
+									}, 1500);
+								}else{
+									$('#clicaptcha-box .clicaptcha-title').html(opts.error_tip);
+									setTimeout(function(){
+										$this.clicaptcha(opts);
+									}, 1500);
 								}
 							});
 						}
@@ -71,7 +74,9 @@
 	});
 	//默认参数
 	var defaluts = {
-		src: 'click-captcha/captcha.php',
+		src: 'clicaptcha/clicaptcha.php',
+		success_tip: '验证成功！',
+		error_tip: '未点中正确区域，请重试！',
 		callback: function(){}
 	};
 })(window.jQuery);
