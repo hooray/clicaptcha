@@ -52,7 +52,7 @@
 								}
 							}).done(function(cb){
 								if(cb == 1){
-									$this.val(captchainfo);
+									$this.val(captchainfo).data('ischeck', true);
 									$('#clicaptcha-box .clicaptcha-title').html(opts.success_tip);
 									setTimeout(function(){
 										$('#clicaptcha-box, #clicaptcha-mask').hide();
@@ -69,6 +69,17 @@
 					});
 				});
 			});
+			return this;
+		},
+		'clicaptchaCheck': function(){
+			var ischeck = false;
+			if(this.data('ischeck') == true){
+				ischeck = true;
+			}
+			return ischeck;
+		},
+		'clicaptchaReset': function(){
+			this.val('').removeData('ischeck');
 			return this;
 		}
 	});
