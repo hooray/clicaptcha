@@ -13,7 +13,11 @@
 				$('body').append('<div id="clicaptcha-box">'+
 					'<img class="clicaptcha-img" src="" alt="易网验证码加载失败，请点击刷新按钮">'+
 					'<div class="clicaptcha-title"></div>'+
-					'<a href="javascript:;" class="clicaptcha-refresh-btn" title="刷新"></a>'+
+					'<div class="clicaptcha-refresh-box">'+
+						'<div class="clicaptcha-refresh-line clicaptcha-refresh-line-left"></div>'+
+						'<a href="javascript:;" class="clicaptcha-refresh-btn" title="刷新"></a>'+
+						'<div class="clicaptcha-refresh-line clicaptcha-refresh-line-right"></div>'+
+					'</div>'+
 				'</div>');
 				$('body').append('<div id="clicaptcha-mask"></div>');
 				$('#clicaptcha-mask').click(function(){

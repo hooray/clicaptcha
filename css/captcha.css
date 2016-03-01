@@ -34,12 +34,32 @@
 #clicaptcha-box .clicaptcha-title span.clicaptcha-clicked{
 	color: #069;
 }
+#clicaptcha-box .clicaptcha-refresh-box{
+	position: relative;
+	margin-top: 10px;
+}
+#clicaptcha-box .clicaptcha-refresh-line{
+	position: absolute;
+	top: 16px;
+	width: 140px;
+	height: 1px;
+	background-color: #ccc;
+}
+#clicaptcha-box .clicaptcha-refresh-line-left{
+	left: 5px;
+}
+#clicaptcha-box .clicaptcha-refresh-line-right{
+	right: 5px;
+}
 #clicaptcha-box .clicaptcha-refresh-btn{
 	display: block;
-	margin: 10px auto 0;
+	margin: 0 auto;
 	width: 32px;
 	height: 32px;
 	background: url(../image/refresh.png) no-repeat;
+}
+#clicaptcha-box .clicaptcha-refresh-btn:hover{
+	background-position:-32px 0;
 }
 #clicaptcha-mask{
 	display: none;
