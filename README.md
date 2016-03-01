@@ -5,7 +5,7 @@
 [点击查看](http://captcha.oschina.mopaasapp.com/demo)
 
 ## 效果图
-![](http://ww1.sinaimg.cn/large/60c18c1cgw1f1e0mrqp12j20bh09v40h.jpg)
+![](http://ww1.sinaimg.cn/large/60c18c1cgw1f1h52b5qzzj20bd09vjtf.jpg)
 
 ## 调用方式
 ```
