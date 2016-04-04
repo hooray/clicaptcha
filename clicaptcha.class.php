@@ -8,12 +8,12 @@
 		public function creat(){
 			$imagePathArr = array('image/1.jpg', 'image/2.jpg', 'image/3.jpg');
 			$imagePath = $imagePathArr[rand(0, 2)];
-			$fontPath = 'font/iYuanTi.ttf';
+			$fontPath = 'font/msyh.ttc';
 			foreach($this->randChars() as $v){
-				$fontSize = rand(20, 40);
+				$fontSize = rand(15, 30);
 				//字符串文本框宽度和长度
 				$fontarea  = imagettfbbox($fontSize, 0, $fontPath, $v);
-				$textWidth = $fontarea[2] - $fontarea[0]; 
+				$textWidth = $fontarea[2] - $fontarea[0];
 				$textHeight = $fontarea[1] - $fontarea[7];
 				$tmp['text'] = $v;
 				$tmp['size'] = $fontSize;
