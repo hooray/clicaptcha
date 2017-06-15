@@ -145,7 +145,12 @@
 			$return = array();
 			$x = rand(0, $imgW - $fontW);
 			$y = rand($fontH, $imgH);
-			if(!$this->checkPosition($textArr, $x, $y, $fontW, $fontH)){
+			//判断是否超出画布区域
+			if($x + $fontW > $imgW || $y + $fontH > $imgH){
+				$return = $this->randPosition($textArr, $imgW, $imgH, $fontW, $fontH);
+			}
+			//碰撞验证
+			else if(!$this->checkPosition($textArr, $x, $y, $fontW, $fontH)){
 				$return = $this->randPosition($textArr, $imgW, $imgH, $fontW, $fontH);
 			}else{
 				$return = array($x, $y);
