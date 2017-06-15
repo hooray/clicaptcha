@@ -44,7 +44,7 @@
 					e.preventDefault();
 					thisObj.off('mouseup').on('mouseup', function(e){
 						$('#clicaptcha-box .clicaptcha-title span:eq('+xyArr.length+')').addClass('clicaptcha-clicked');
-						xyArr.push((e.clientX - $(this).offset().left) + ',' + (e.clientY - $(this).offset().top));
+						xyArr.push(($(document).scrollLeft() + e.clientX - $(this).offset().left) + ',' + ($(document).scrollTop() + e.clientY - $(this).offset().top));
 						if(xyArr.length == text.length){
 							var captchainfo = [xyArr.join('-'), thisObj.width(), thisObj.height()].join(';');
 							$.ajax({
