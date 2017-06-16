@@ -7,7 +7,7 @@
 		}
 		public function creat(){
 			$imagePathArr = array('image/1.jpg', 'image/2.jpg', 'image/3.jpg');
-			$imagePath = $imagePathArr[rand(0, 2)];
+			$imagePath = $imagePathArr[rand(0, count($imagePathArr) - 1)];
 			$fontPath = 'font/SourceHanSansCN-Normal.otf';
 			foreach($this->randChars() as $v){
 				$fontSize = rand(15, 30);
@@ -38,7 +38,7 @@
 			//创建图片的实例
 			$image = imagecreatefromstring(file_get_contents($imagePath));
 			foreach($textArr['text'] as $v){
-				list($r, $g, $b) = $this->getImageColor($imagePath, $v['x'] + $v['width'] / 2, $v['y'] + $v['height'] / 2);
+				list($r, $g, $b) = $this->getImageColor($imagePath, $v['x'] + $v['width'] / 2, $v['y'] - $v['height'] / 2);
 				//字体颜色
 				$color = imagecolorallocate($image, $r, $g, $b);
 				//阴影字体颜色
@@ -47,16 +47,16 @@
 				$b = $b > 127 ? 0 : 255;
 				$shadowColor = imagecolorallocate($image, $r, $g, $b);
 				//绘画阴影
-				imagefttext($image, $v['size'], 0, $v['x'] + 1, $v['y'], $shadowColor, $fontPath, $v['text']);
-				imagefttext($image, $v['size'], 0, $v['x'], $v['y'] + 1, $shadowColor, $fontPath, $v['text']);
-				imagefttext($image, $v['size'], 0, $v['x'] - 1, $v['y'], $shadowColor, $fontPath, $v['text']);
-				imagefttext($image, $v['size'], 0, $v['x'], $v['y'] - 1, $shadowColor, $fontPath, $v['text']);
-				imagefttext($image, $v['size'], 0, $v['x'] + 1, $v['y'] + 1, $shadowColor, $fontPath, $v['text']);
-				imagefttext($image, $v['size'], 0, $v['x'] + 1, $v['y'] - 1, $shadowColor, $fontPath, $v['text']);
-				imagefttext($image, $v['size'], 0, $v['x'] - 1, $v['y'] - 1, $shadowColor, $fontPath, $v['text']);
-				imagefttext($image, $v['size'], 0, $v['x'] - 1, $v['y'] + 1, $shadowColor, $fontPath, $v['text']);
+				imagettftext($image, $v['size'], 0, $v['x'] + 1, $v['y'], $shadowColor, $fontPath, $v['text']);
+				imagettftext($image, $v['size'], 0, $v['x'], $v['y'] + 1, $shadowColor, $fontPath, $v['text']);
+				imagettftext($image, $v['size'], 0, $v['x'] - 1, $v['y'], $shadowColor, $fontPath, $v['text']);
+				imagettftext($image, $v['size'], 0, $v['x'], $v['y'] - 1, $shadowColor, $fontPath, $v['text']);
+				imagettftext($image, $v['size'], 0, $v['x'] + 1, $v['y'] + 1, $shadowColor, $fontPath, $v['text']);
+				imagettftext($image, $v['size'], 0, $v['x'] + 1, $v['y'] - 1, $shadowColor, $fontPath, $v['text']);
+				imagettftext($image, $v['size'], 0, $v['x'] - 1, $v['y'] - 1, $shadowColor, $fontPath, $v['text']);
+				imagettftext($image, $v['size'], 0, $v['x'] - 1, $v['y'] + 1, $shadowColor, $fontPath, $v['text']);
 				//绘画文字
-				imagefttext($image, $v['size'], 0, $v['x'], $v['y'], $color, $fontPath, $v['text']);
+				imagettftext($image, $v['size'], 0, $v['x'], $v['y'], $color, $fontPath, $v['text']);
 			}
 			//生成图片
 			switch($imageType){
@@ -145,12 +145,8 @@
 			$return = array();
 			$x = rand(0, $imgW - $fontW);
 			$y = rand($fontH, $imgH);
-			//判断是否超出画布区域
-			if($x + $fontW > $imgW || $y + $fontH > $imgH){
-				$return = $this->randPosition($textArr, $imgW, $imgH, $fontW, $fontH);
-			}
 			//碰撞验证
-			else if(!$this->checkPosition($textArr, $x, $y, $fontW, $fontH)){
+			if(!$this->checkPosition($textArr, $x, $y, $fontW, $fontH)){
 				$return = $this->randPosition($textArr, $imgW, $imgH, $fontW, $fontH);
 			}else{
 				$return = array($x, $y);
