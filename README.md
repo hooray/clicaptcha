@@ -5,10 +5,10 @@
 ![](https://i.loli.net/2019/07/24/5d37f5679236726997.png)
 
 ## 调用方式
-```
+```html
 <input type="hidden" id="clicaptcha-submit-info" name="clicaptcha-submit-info">
 ```
-```
+```js
 $('#clicaptcha-submit-info').clickCaptcha({
     src: '../clicaptcha.php',
 	success_tip: '验证成功！',
@@ -18,7 +18,7 @@ $('#clicaptcha-submit-info').clickCaptcha({
 	}
 });
 ```
-```
+```php
 //后端进行二次验证
 require('../clicaptcha.class.php');
 $clicaptcha = new clicaptcha();
