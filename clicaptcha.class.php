@@ -9,7 +9,7 @@
 			$imagePathArr = array('image/1.jpg', 'image/2.jpg', 'image/3.jpg');
 			$imagePath = $imagePathArr[rand(0, count($imagePathArr) - 1)];
 			$fontPath = 'font/SourceHanSansCN-Normal.otf';
-			foreach($this->randChars() as $v){
+			foreach($this->randChars(8) as $v){
 				$fontSize = rand(15, 30);
 				//字符串文本框宽度和长度
 				$fontarea  = imagettfbbox($fontSize, 0, $fontPath, $v);
@@ -25,6 +25,7 @@
 			list($imageWidth, $imageHeight, $imageType) = getimagesize($imagePath);
 			$textArr['width'] = $imageWidth;
 			$textArr['height'] = $imageHeight;
+			$text = [];
 			//随机生成汉字位置
 			foreach($textArr['text'] as &$v){
 				list($x, $y) = $this->randPosition($textArr['text'], $imageWidth, $imageHeight, $v['width'], $v['height']);
@@ -33,8 +34,6 @@
 				$text[] = $v['text'];
 			}
 			unset($v);
-			$_SESSION['clicaptcha_text'] = $textArr;
-			setcookie('clicaptcha_text', implode(',', $text), time() + 3600, '/');
 			//创建图片的实例
 			$image = imagecreatefromstring(file_get_contents($imagePath));
 			foreach($textArr['text'] as $v){
@@ -58,6 +57,11 @@
 				//绘画文字
 				imagettftext($image, $v['size'], 0, $v['x'], $v['y'], $color, $fontPath, $v['text']);
 			}
+			//删除汉字数组后面4个，实现图片上展示8个字，实际只需点击4个的效果
+			$textArr['text'] = array_splice($textArr['text'], 3, 4);
+			$text = array_splice($text, 3, 4);
+			$_SESSION['clicaptcha_text'] = $textArr;
+			setcookie('clicaptcha_text', implode(',', $text), time() + 3600, '/');
 			//生成图片
 			switch($imageType){
 				case 1://GIF
