@@ -8,7 +8,7 @@
 		public function creat(){
 			$imagePathArr = array('image/1.jpg', 'image/2.jpg', 'image/3.jpg');
 			$imagePath = $imagePathArr[rand(0, count($imagePathArr) - 1)];
-			$fontPath = realpath('font/SourceHanSansCN-Normal.otf');
+			$fontPath = realpath('font/SourceHanSansCN-Normal.ttf');
 			foreach($this->randChars(8) as $v){
 				$fontSize = rand(15, 30);
 				//字符串文本框宽度和长度
