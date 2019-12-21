@@ -2,7 +2,7 @@
 这是一个基于PHP的jQuery中文点击验证码插件
 
 ## 效果图
-![](https://i.loli.net/2019/07/24/5d37f5679236726997.png)
+![](https://i.loli.net/2019/12/21/MzK7hOwNWaBAC9v.png)
 
 ## 调用方式
 ```html
