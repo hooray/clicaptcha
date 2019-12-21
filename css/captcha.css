@@ -1,4 +1,4 @@
-#clicaptcha-box{
+#clicaptcha-container{
 	display: none;
 	width: 350px;
 	height: 290px;
@@ -14,12 +14,31 @@
 	border-radius: 10px;
 	box-shadow: 0 0 0 1px hsla(0,0%,100%,.3) inset, 0 .5em 1em rgba(0, 0, 0, 0.6);
 }
-#clicaptcha-box .clicaptcha-img{
+#clicaptcha-container .clicaptcha-imgbox{
+	position: relative;
+}
+#clicaptcha-container .clicaptcha-imgbox .step{
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	color: #f04848;
+	border: 3px solid #f04848;
+	background-color: #fff;
+	border-radius: 30px;
+	box-shadow: 0 0 10px #fff;
+	-webkit-user-select: none;
+	user-select: none;
+}
+#clicaptcha-container .clicaptcha-img{
 	width: 350px;
 	height: 200px;
 	border: none;
 }
-#clicaptcha-box .clicaptcha-title{
+#clicaptcha-container .clicaptcha-title{
 	font-family: 'Microsoft YaHei';
 	height: 40px;
 	line-height: 40px;
@@ -27,39 +46,39 @@
 	text-align: center;
 	color: #333;
 }
-#clicaptcha-box .clicaptcha-title span{
+#clicaptcha-container .clicaptcha-title span{
 	font-size: 16px;
 	font-weight: bold;
 	color: #c00;
 }
-#clicaptcha-box .clicaptcha-title span.clicaptcha-clicked{
+#clicaptcha-container .clicaptcha-title span.clicaptcha-clicked{
 	color: #069;
 }
-#clicaptcha-box .clicaptcha-refresh-box{
+#clicaptcha-container .clicaptcha-refresh-box{
 	position: relative;
 	margin-top: 10px;
 }
-#clicaptcha-box .clicaptcha-refresh-line{
+#clicaptcha-container .clicaptcha-refresh-line{
 	position: absolute;
 	top: 16px;
 	width: 140px;
 	height: 1px;
 	background-color: #ccc;
 }
-#clicaptcha-box .clicaptcha-refresh-line-left{
+#clicaptcha-container .clicaptcha-refresh-line-left{
 	left: 5px;
 }
-#clicaptcha-box .clicaptcha-refresh-line-right{
+#clicaptcha-container .clicaptcha-refresh-line-right{
 	right: 5px;
 }
-#clicaptcha-box .clicaptcha-refresh-btn{
+#clicaptcha-container .clicaptcha-refresh-btn{
 	display: block;
 	margin: 0 auto;
 	width: 32px;
 	height: 32px;
 	background: url(../image/refresh.png) no-repeat;
 }
-#clicaptcha-box .clicaptcha-refresh-btn:hover{
+#clicaptcha-container .clicaptcha-refresh-btn:hover{
 	background-position:-32px 0;
 }
 #clicaptcha-mask{
