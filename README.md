@@ -14,7 +14,7 @@
 <input type="hidden" id="clicaptcha-submit-info" name="clicaptcha-submit-info">
 ```
 ```js
-$('#clicaptcha-submit-info').clickCaptcha({
+$('#clicaptcha-submit-info').clicaptcha({
     src: '../clicaptcha.php',
 	success_tip: '验证成功！',
 	error_tip: '未点中正确区域，请重试！',
