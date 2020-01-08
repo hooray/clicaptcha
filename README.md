@@ -6,6 +6,11 @@
 
 ## 调用方式
 ```html
+<!-- 引入 jquery 和 js.cookie -->
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/js-cookie/2.2.1/js.cookie.min.js"></script>
+
+<!-- 在页面需要位置加入隐藏域 -->
 <input type="hidden" id="clicaptcha-submit-info" name="clicaptcha-submit-info">
 ```
 ```js
